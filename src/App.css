@@ -1,13 +1,10 @@
-.app {
-  width: 100%;
-}
+
 .header {
   display: flex;
   justify-content: space-between;
   grid-area: header;
   background-color: darkseagreen;
-  width: 100%;
-  padding: .5rem;
+  padding: 1rem .5rem;
 }
 
 .new__thread {
@@ -24,15 +21,13 @@
 }
 
 .threads {
-  min-width: 80%;
-  height: max-content;
+  font-size: large;
   background-color: rgb(222, 252, 252);
   display: grid;
-  justify-content: center;
   place-content: center;
   place-items: center;
   grid-template-columns: 1fr;
-  text-align: center;
+  text-align: left;
   padding: .5rem;
   margin: 0 auto;
 }
@@ -48,6 +43,12 @@
   border: .1rem solid;
   list-style-type: none;
   min-width: 60%;
-  padding: .5rem;
+  padding: 1.5rem 1rem;
   margin: 0;
+  transition: background-color .2s;
+}
+
+.threads__element:hover {
+  background-color: rgb(190, 248, 248);
+  cursor: pointer;
 }
