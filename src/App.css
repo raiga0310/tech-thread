@@ -1,4 +1,3 @@
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -18,6 +17,11 @@
   transition: background-color 0.2s;
 }
 
+.new__thread:hover {
+  background-color: #1760ff;
+}
+
+/* スレッドフォーム全体のスタイル */
 .form__thread {
   font-size: large;
   background-color: rgb(222, 252, 252);
@@ -30,9 +34,9 @@
   margin: 0 auto;
   min-height: 100vh;
   box-sizing: border-box;
+  min-width: 300px;
 }
 
-/* フォーム全体のスタイル */
 .form__thread form {
   width: 100%;
   max-width: 500px;
@@ -43,9 +47,10 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 2rem;
 }
 
-/* 見出しのスタイル */
 .form__thread h3 {
   color: #2c3e50;
   font-size: 1.8rem;
@@ -54,15 +59,14 @@
   font-weight: bold;
 }
 
-/* 入力フィールドのスタイル */
 .form__thread input[type="text"] {
   width: 100%;
+  box-sizing: border-box;
   padding: 0.8rem 1rem;
   font-size: 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 6px;
   outline: none;
-  box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -75,7 +79,10 @@
   color: #a0aec0;
 }
 
-/* 送信ボタンのスタイル */
+.form__thread input[type="text"]:invalid {
+  border-color: #fc8181;
+}
+
 .form__thread input[type="submit"] {
   background-color: #6e9afa;
   color: white;
@@ -98,27 +105,6 @@
   transform: translateY(0);
 }
 
-/* エラー状態のスタイル */
-.form__thread input[type="text"]:invalid {
-  border-color: #fc8181;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 640px) {
-  .form__thread form {
-    padding: 1.5rem;
-  }
-  
-  .form__thread h3 {
-    font-size: 1.5rem;
-  }
-  
-  .form__thread input[type="submit"] {
-    width: 100%;
-  }
-}
-
-/* リンクのスタイル */
 .form__thread a {
   display: inline-block;
   color: #6e9afa;
@@ -137,14 +123,6 @@
   transform: translateY(-1px);
 }
 
-.form__thread a:active {
-  transform: translateY(0);
-}
-
-.new__thread:hover {
-  background-color: #1760ff;
-}
-
 .threads {
   font-size: large;
   background-color: rgb(222, 252, 252);
@@ -159,8 +137,8 @@
 .threads__list {
   display: inline;
   min-height: 100vh;
-  margin: 0px;
-  padding: 0px
+  margin: 0;
+  padding: 0;
 }
 
 .threads__element {
@@ -177,30 +155,77 @@
   background-color: rgb(190, 248, 248);
   cursor: pointer;
 }
+
+.posts__container {
+  display: flex;
+  padding: 2rem 20rem;
+  margin: 0 auto;
+  background-color: rgb(222, 252, 252);
+  min-height: calc(100vh - 60px);
+}
+
 .posts {
   font-size: large;
-  background-color: rgb(222, 252, 252);
-  display: grid;
-  place-items: left;
-  grid-template-columns: 1fr;
-  text-align: left;
-  padding: .5rem;
-  padding-left: 5rem;
-  margin: 0 auto;
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.posts h3 {
+  margin: 0;
+  padding: 1rem 0;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .posts__list {
-  display: inline;
-  min-height: 100vh;
-  margin: 0px;
-  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .posts__element {
-  display: inline grid;
-  border: .1rem solid;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   list-style-type: none;
-  min-width: 60%;
   padding: 1.5rem 1rem;
-  margin: 0;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 968px) {
+  .posts__container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .form__thread {
+    width: 100%;
+  }
+
+  .posts {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .form__thread form {
+    padding: 1.5rem;
+  }
+
+  .form__thread h3 {
+    font-size: 1.5rem;
+  }
+
+  .form__thread input[type="submit"] {
+    width: 100%;
+  }
 }
