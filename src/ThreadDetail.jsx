@@ -49,10 +49,11 @@ PostsList.propTypes = {
 
 function NewPostForm() {
     const [post, setPost] = useState('');
+    const { threadId } = useParams();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await fetch('https://railway.bulletinboard.techtrain.dev/threads/${threadID}/posts', {
+        await fetch('https://railway.bulletinboard.techtrain.dev/threads/'+ threadId + '/posts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
