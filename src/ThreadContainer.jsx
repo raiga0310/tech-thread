@@ -20,7 +20,8 @@ function fetchThreadData() {
 
 function ThreadList() {
   const threads = fetchThreadData();
-  const navigate = useNavigate();  const [selectedThreadId, setSelectedThreadId] = useState(null);
+  const navigate = useNavigate();  
+  const [selectedThreadId, setSelectedThreadId] = useState(null);
   const [selectedThreadTitle, setSelectedThreadTitle] = useState(null);
   
   useEffect(() => {
