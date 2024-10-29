@@ -30,8 +30,8 @@ function PostsList({ posts }) {
     <div className="posts">
         <h3>スレタイ</h3>
         <ul className="posts__list">
-            {posts.map((reply) => (
-                <li key={reply.id} className="posts__element">{reply.post}</li>
+            {posts.map((post) => (
+                <li key={post.id} className="posts__element">{post.post}</li>
             ))}
         </ul>
     </div>
