@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 
 // データフェッチのためのプロミスを保持
 let threadData = null;
@@ -19,10 +20,11 @@ function fetchThreadData() {
 
 function ThreadList() {
   const threads = fetchThreadData();
+  const navigate = useNavigate();
   return (
     <ul className="threads__list">
       {threads.map(thread => (
-        <li key={thread.id} className="threads__element">
+        <li key={thread.id} className="threads__element" onClick={() => navigate(`/threads/${thread.id}`)}>
           {thread.title}
         </li>
       ))}

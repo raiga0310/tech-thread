@@ -149,7 +149,6 @@
   font-size: large;
   background-color: rgb(222, 252, 252);
   display: grid;
-  place-content: center;
   place-items: center;
   grid-template-columns: 1fr;
   text-align: left;
@@ -176,4 +175,30 @@
 .threads__element:hover {
   background-color: rgb(190, 248, 248);
   cursor: pointer;
+}
+.posts {
+  font-size: large;
+  background-color: rgb(222, 252, 252);
+  display: grid;
+  place-items: left;
+  grid-template-columns: 1fr;
+  text-align: left;
+  padding: .5rem;
+  padding-left: 5rem;
+  margin: 0 auto;
+}
+
+.posts__list {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+
+.posts__element {
+  display: inline grid;
+  border: .1rem solid;
+  list-style-type: none;
+  min-width: 60%;
+  padding: 1.5rem 1rem;
+  margin: 0;
 }
