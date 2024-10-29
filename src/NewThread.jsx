@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import ThreadForm from "./ThreadHome";
+import ThreadForm from "./ThreadForm";
 
 function NewThread() {
     return (
