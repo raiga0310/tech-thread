@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
 import { useParams } from "react-router-dom";
 import { Header } from "./Header";
 
 function ThreadDetail() {
+    return (
+        <>
+            <Header />
+            <PostsList />
+        </>
+    )
+}
+
+function PostsList() {
     const { threadId } = useParams();
     const [posts, setPosts] = useState([]);
 
@@ -17,15 +25,6 @@ function ThreadDetail() {
             setPosts(data.posts);
         })
     }, [threadId]);
-    return (
-        <>
-            <Header />
-            <PostsList posts={posts} />
-        </>
-    )
-}
-
-function PostsList({ posts }) {
   return (
     <div className="posts">
         <h3>スレタイ</h3>
@@ -37,14 +36,5 @@ function PostsList({ posts }) {
     </div>
   );
 }
-
-PostsList.propTypes = {
-    posts: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            post: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-};
 
 export default ThreadDetail;
