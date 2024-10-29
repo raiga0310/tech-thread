@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // データフェッチのためのプロミスを保持
@@ -20,11 +20,33 @@ function fetchThreadData() {
 
 function ThreadList() {
   const threads = fetchThreadData();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  const [selectedThreadId, setSelectedThreadId] = useState(null);
+  const [selectedThreadTitle, setSelectedThreadTitle] = useState(null);
+  
+  useEffect(() => {
+    if (selectedThreadId !== null) {
+      navigate(`/threads/${selectedThreadId}`, {
+        state: { threadTitle: selectedThreadTitle }
+      });
+      // ナビゲーション後はステートをリセット
+      setSelectedThreadId(null);
+      setSelectedThreadTitle(null);
+    }
+  }, [selectedThreadId, selectedThreadTitle, navigate]);
+
+  const handleThreadClick = (thread) => {
+    setSelectedThreadId(thread.id);
+    setSelectedThreadTitle(thread.title);
+  };
+
   return (
     <ul className="threads__list">
       {threads.map(thread => (
-        <li key={thread.id} className="threads__element" onClick={() => navigate(`/threads/${thread.id}`)}>
+        <li 
+          key={thread.id} 
+          className="threads__element" 
+          onClick={() => handleThreadClick(thread)}
+        >
           {thread.title}
         </li>
       ))}
