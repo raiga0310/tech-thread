@@ -158,6 +158,7 @@
 
 .posts__container {
   display: flex;
+  gap: 3rem;
   padding: 2rem 20rem;
   margin: 0 auto;
   background-color: rgb(222, 252, 252);
