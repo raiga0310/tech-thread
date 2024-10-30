@@ -1,6 +1,17 @@
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+export function ThreadContainer() {
+  return (
+    <main className="threads">
+      <h3>スレッド一覧</h3>
+      <Suspense fallback={<Loading />}>
+        <ThreadList />
+      </Suspense>
+    </main>
+  );
+}
+
 // データフェッチのためのプロミスを保持
 let threadData = null;
 let promise = null;
@@ -47,22 +58,17 @@ function ThreadList() {
           key={thread.id} 
           className="threads__element" 
           onClick={() => handleThreadClick(thread)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleThreadClick(thread)
+            }
+          }}
+          tabIndex={0}
         >
           {thread.title}
         </li>
       ))}
     </ul>
-  );
-}
-
-export function ThreadContainer() {
-  return (
-    <div className="threads">
-      <h3>スレッド一覧</h3>
-      <Suspense fallback={<Loading />}>
-        <ThreadList />
-      </Suspense>
-    </div>
   );
 }
 

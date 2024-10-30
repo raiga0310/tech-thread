@@ -24,10 +24,10 @@ function ThreadDetail() {
     return (
         <>
             <Header />
-            <div className="posts__container">   
+            <main className="posts__container">   
                 <PostsList title={threadTitle} posts={posts}/>
-                <NewPostForm fetchPosts={fetchPosts}/>
-            </div>
+                <NewPostForm fetchPosts={fetchPosts} aria-live="assertive"/>
+            </main>
             <ScrollRestoration />
         </>
     )
@@ -37,14 +37,14 @@ import PropTypes from 'prop-types';
 
 function PostsList({ title, posts }) {
   return (
-    <div className="posts">
+    <article className="posts">
         <h3>{title}</h3>
         <ul className="posts__list">
             {posts.map((post) => (
                 <li key={post.id} className="posts__element">{post.post}</li>
             ))}
         </ul>
-    </div>
+    </article>
   );
 }
 
@@ -72,13 +72,20 @@ function NewPostForm({ fetchPosts }) {
     }
 
     return (
-        <div className="form__thread">
+        <aside className="form__thread">
             <h3>投稿する</h3>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="post" id="name" onChange={(e) => setPost(e.target.value)} placeholder="投稿" />
+                <input 
+                    type="text" 
+                    name="post" 
+                    id="name" 
+                    onChange={(e) => setPost(e.target.value)} 
+                    placeholder="投稿" 
+                    aria-label="投稿したい内容を入力"
+                />
                 <input type="submit" value="送信" />
             </form>
-        </div>
+        </aside>
     )
 }
 
