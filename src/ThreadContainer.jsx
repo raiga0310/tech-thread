@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import ThreadList from "./components/ThreadList";
-import Loading from "./components/Loaing";
+import Loading from "./components/Loading";
 
 export function ThreadContainer() {
   return (
