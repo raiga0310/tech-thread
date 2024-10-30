@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// データフェッチのためのプロミスを保持
-let threadData = null;
-let promise = null;
 
-function fetchThreadData() {
-  if (threadData) return threadData;
-  if (!promise) {
-    promise = fetch('https://railway.bulletinboard.techtrain.dev/threads')
-      .then(response => response.json())
-      .then(data => {
-        threadData = data;
-        return threadData;
-      });
-  }
-  throw promise;
+let threadsData = null;
+
+async function fetchThreadData() {
+  const response = await fetch("https://railway.bulletinboard.techtrain.dev/threads", { method: "GET" });
+  return response.json();
 }
 
 function ThreadList() {
-  const threads = fetchThreadData();
+  if(!threadsData) {
+    throw fetchThreadData().then((data) => { threadsData = data});
+  }
   const navigate = useNavigate();  
   const [selectedThreadId, setSelectedThreadId] = useState(null);
   const [selectedThreadTitle, setSelectedThreadTitle] = useState(null);
@@ -41,7 +34,7 @@ function ThreadList() {
 
   return (
     <ul className="threads__list">
-      {threads.map(thread => (
+      {threadsData.map(thread => (
         <li 
           key={thread.id} 
           className="threads__element" 
