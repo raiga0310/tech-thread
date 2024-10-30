@@ -10,8 +10,7 @@ function ThreadDetail() {
     const location = useLocation();
     const threadTitle = location.state?.threadTitle;
 
-    const fetchPosts = async (threadId) => {
-        
+    async function fetchPosts (threadId) {
         const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`,
             {
                 method: 'GET'
