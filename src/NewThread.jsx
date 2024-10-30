@@ -1,6 +1,6 @@
 import { ScrollRestoration } from "react-router-dom";
 import { Header } from "./Header";
-import ThreadForm from "./ThreadForm";
+import ThreadForm from "./components/ThreadForm";
 
 function NewThread() {
     return (
