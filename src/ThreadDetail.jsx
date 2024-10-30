@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { ScrollRestoration, useLocation, useParams } from "react-router-dom";
 import { Header } from "./Header";
 
 function ThreadDetail() {
@@ -28,6 +28,7 @@ function ThreadDetail() {
                 <PostsList title={threadTitle} posts={posts}/>
                 <NewPostForm fetchPosts={fetchPosts}/>
             </div>
+            <ScrollRestoration />
         </>
     )
 }
