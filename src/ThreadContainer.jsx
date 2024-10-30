@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import ThreadList from "./components/ThreadList";
+import Loading from "./components/Loaing";
 
 export function ThreadContainer() {
   return (
@@ -10,8 +11,4 @@ export function ThreadContainer() {
       </Suspense>
     </main>
   );
-}
-
-function Loading() {
-  return <h2>🌀 よみこみちう</h2>;
 }
