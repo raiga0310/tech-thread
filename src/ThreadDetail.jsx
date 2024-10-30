@@ -3,14 +3,30 @@ import { useLocation, useParams } from "react-router-dom";
 import { Header } from "./Header";
 
 function ThreadDetail() {
+    const [posts, setPosts] = useState([]);
+    const { threadId } = useParams();
     const location = useLocation();
     const threadTitle = location.state?.threadTitle;
+
+    const fetchPosts = async (threadId) => {
+        
+        const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`,
+            {
+                method: 'GET'
+            }
+        )
+        const json = await response.json();
+        setPosts(json.posts);
+    }
+    useEffect(()=>{
+        fetchPosts(threadId);
+    }, [threadId]);
     return (
         <>
             <Header />
             <div className="posts__container">   
-                <PostsList title={threadTitle}/>
-                <NewPostForm />
+                <PostsList title={threadTitle} posts={posts}/>
+                <NewPostForm fetchPosts={fetchPosts}/>
             </div>
         </>
     )
@@ -18,19 +34,7 @@ function ThreadDetail() {
 
 import PropTypes from 'prop-types';
 
-function PostsList({ title }) {
-    const { threadId } = useParams();
-    const [posts, setPosts] = useState([]);
-    useEffect(()=>{
-        fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`,
-            {
-                method: 'GET'
-            }
-        ).then(response => response.json())
-        .then(data => {
-            setPosts(data.posts);
-        })
-    }, [threadId]);
+function PostsList({ title, posts }) {
   return (
     <div className="posts">
         <h3>{title}</h3>
@@ -45,9 +49,10 @@ function PostsList({ title }) {
 
 PostsList.propTypes = {
     title: PropTypes.string.isRequired,
+    posts: PropTypes.array.isRequired
 };
 
-function NewPostForm() {
+function NewPostForm({ fetchPosts }) {
     const [post, setPost] = useState('');
     const { threadId } = useParams();
 
@@ -62,6 +67,7 @@ function NewPostForm() {
         });
 
         setPost('');
+        fetchPosts(threadId);
     }
 
     return (
@@ -73,6 +79,10 @@ function NewPostForm() {
             </form>
         </div>
     )
+}
+
+NewPostForm.propTypes = {
+    fetchPosts: PropTypes.func.isRequired
 }
 
 export default ThreadDetail;
