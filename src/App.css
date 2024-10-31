@@ -144,7 +144,6 @@
 }
 
 .threads__element {
-  display: inline grid;
   border: 1px solid #ccc;
   border-radius: 6px;
   list-style-type: none;
@@ -215,6 +214,10 @@
 
   .form__thread {
     width: 100%;
+  }
+
+  .form__thread form {
+    width: 80%;
   }
 
   .posts {
