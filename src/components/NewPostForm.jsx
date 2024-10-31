@@ -27,7 +27,8 @@ function NewPostForm({ fetchPosts }) {
                 <input 
                     type="text" 
                     name="post" 
-                    id="name" 
+                    id="name"
+                    required
                     onChange={(e) => setPost(e.target.value)} 
                     placeholder="投稿" 
                     aria-label="投稿したい内容を入力"
