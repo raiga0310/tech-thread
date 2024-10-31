@@ -5,7 +5,7 @@ function PostList({ title, posts }) {
     <article className="posts">
         <h3>{title}</h3>
         <ul className="posts__list">
-            {posts.map((post) => (
+            {posts.filter(post => post.post !== "").map((post) => (
                 <li key={post.id} className="posts__element">{post.post}</li>
             ))}
         </ul>
