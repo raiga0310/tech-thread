@@ -27,6 +27,7 @@ function ThreadForm() {
                     required 
                     placeholder="スレタイ"
                     aria-label="話したい話題のタイトルを入力"
+                    autoComplete="off"
                 />
                 <input type="submit" value="作成" />
             </form>
