@@ -8,7 +8,7 @@ function NewPostForm({ fetchPosts }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await fetch('https://railway.bulletinboard.techtrain.dev/threads/'+ threadId + '/posts', {
+        await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
